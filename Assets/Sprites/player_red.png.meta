@@ -1,13 +1,12 @@
 fileFormatVersion: 2
-guid: 9b834ca12330b204684038e9325165ab
-timeCreated: 1533207792
+guid: ba4e3c596a52b8f47afa3a1ee141445a
+timeCreated: 1533293370
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: player_top
-    21300002: player_mid
-    21300004: player_side
-    21300006: player_top
+    21300000: player_red_top
+    21300002: player_red_mid
+    21300004: player_red_side
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -45,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -91,7 +90,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_top
+      name: player_red_top
       rect:
         serializedVersion: 2
         x: 0
@@ -105,7 +104,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_mid
+      name: player_red_mid
       rect:
         serializedVersion: 2
         x: 5
@@ -119,7 +118,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_side
+      name: player_red_side
       rect:
         serializedVersion: 2
         x: 12

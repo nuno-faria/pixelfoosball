@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 232730185949469682}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: p1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,8 @@ MonoBehaviour:
   direction: right
   up: 119
   down: 115
-  speed: 6
+  power: 32
+  speed: 5
 --- !u!212 &212537007519808168
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -163,7 +164,7 @@ RectTransform:
   m_GameObject: {fileID: 1470121906856404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.03, y: -0.357, z: 0.1416925}
-  m_LocalScale: {x: 11, y: 11, z: 11}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -181,7 +182,7 @@ DistanceJoint2D:
   m_GameObject: {fileID: 1470121906856404}
   m_Enabled: 1
   serializedVersion: 4
-  m_EnableCollision: 0
+  m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
@@ -199,7 +200,7 @@ DistanceJoint2D:
   m_GameObject: {fileID: 1470121906856404}
   m_Enabled: 1
   serializedVersion: 4
-  m_EnableCollision: 0
+  m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity

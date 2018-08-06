@@ -23,8 +23,9 @@ public class PlayerController : MonoBehaviour {
         get {
             Matrix4x4 mat = new Matrix4x4();
             mat.SetRow(0, new Vector4(0.16f, 0.16f, 0.16f, 1f));
+            Color c = GameManager.gm.getColor(player);
+            mat.SetRow(2, new Vector4(c.r, c.g, c.b, c.a));
             mat.SetRow(1, new Vector4(0.51f, 0.27f, 0f, 1f));
-            mat.SetRow(2, new Vector4(shirtColor.r, shirtColor.g, shirtColor.b, shirtColor.a));
             mat.SetRow(3, new Vector4(1f, 0.76f, 0.56f, 1f));
             return mat;
         }

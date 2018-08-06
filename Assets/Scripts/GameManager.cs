@@ -21,21 +21,40 @@ public class GameManager : MonoBehaviour {
     public KeyCode powerP1;
     public KeyCode powerP2;
 
-	void Start () {
+    public Color p1Color;
+    public Color p2Color;
+
+    public AudioSource audio;
+    public AudioClip powerClip;
+    public AudioClip countdownClip;
+    public AudioClip countdownFinalClip;
+
+    private void Awake() {
         gm = this;
+    }
+
+    void Start () {
         ballRB = ball.GetComponent<Rigidbody2D>();
         nextPower = new Dictionary<string, float>();
+        audio = GetComponent<AudioSource>();
         StartGame();
 	}
 
     public void Update() {
-        if (Input.GetKeyDown(powerP1) && Time.time > nextPower["p1"])
+        if (Input.GetKeyDown(powerP1) && Time.time > nextPower["p1"]) {
             nextPower["p1"] = Time.time + cooldownTime;
-        else if (Input.GetKeyDown(powerP2) && Time.time > nextPower["p2"])
+            audio.clip = powerClip;
+            audio.Play();
+        }
+        else if (Input.GetKeyDown(powerP2) && Time.time > nextPower["p2"]) {
             nextPower["p2"] = Time.time + cooldownTime;
+            audio.clip = powerClip;
+            audio.Play();
+        }
     }
 
     public void StartGame() {
+        score.enabled = false;
         ball.transform.position = new Vector2(0, 0);
         p1Score = 0;
         p2Score = 0;
@@ -46,11 +65,18 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator Countdown() {
         countdown.enabled = true;
+        audio.volume = 0.5f;
+        audio.clip = countdownClip;
         for (int i=3; i>0; i--) {
             countdown.text = i.ToString();
+            audio.Play();
             yield return new WaitForSeconds(1f);
         }
         countdown.enabled = false;
+        score.enabled = true;
+        audio.clip = countdownFinalClip;
+        audio.Play();
+        audio.volume = 1f;
         NewRound(0, 0);
     }
 
@@ -60,7 +86,10 @@ public class GameManager : MonoBehaviour {
         else if (player == 2)
             p2Score++;
 
-        score.text = "<color=#FF2526>" + p1Score + "</color> / " + "<color=#004DFF>" + p2Score + "</color>";
+        string colorP1, colorP2;
+        colorP1 = ColorUtility.ToHtmlStringRGB(p1Color);
+        colorP2 = ColorUtility.ToHtmlStringRGB(p2Color);
+        score.text = "<color=#" + colorP1 + ">" + p1Score + "</color> / " + "<color=#" + colorP2 + ">" + p2Score + "</color>";
 
         ball.transform.position = new Vector2(0f, 0f);
         ballRB.velocity = new Vector2(0f, 0f);
@@ -72,5 +101,11 @@ public class GameManager : MonoBehaviour {
         if (x <= 0.5f)
             ballRB.AddForce(new Vector2(13f, 6f));
         else ballRB.AddForce(new Vector2(-13f, -6f));
+    }
+
+    public Color getColor(string player) {
+        if (player == "p1")
+            return p1Color;
+        else return p2Color;
     }
 }

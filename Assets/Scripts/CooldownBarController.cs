@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CooldownBarManager : MonoBehaviour {
+public class CooldownBarController : MonoBehaviour {
 
     public string player;
     private Image image;
 
     void Start() {
         image = GetComponent<Image>();
+        image.color = GameManager.gm.getColor(player);
     }
 
     public void Update() {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -29,8 +30,13 @@ public class GameManager : MonoBehaviour {
     public AudioClip countdownClip;
     public AudioClip countdownFinalClip;
 
+    public bool paused;
+
     private void Awake() {
         gm = this;
+        p1Color = MenuManager.mm.p1Color;
+        p2Color = MenuManager.mm.p2Color;
+        paused = false;
     }
 
     void Start () {
@@ -41,21 +47,25 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void Update() {
-        if (Input.GetKeyDown(powerP1) && Time.time > nextPower["p1"]) {
+        if (Input.GetKeyDown(powerP1) && Time.time > nextPower["p1"] && !paused) {
             nextPower["p1"] = Time.time + cooldownTime;
             audio.clip = powerClip;
             audio.Play();
         }
-        else if (Input.GetKeyDown(powerP2) && Time.time > nextPower["p2"]) {
+        else if (Input.GetKeyDown(powerP2) && Time.time > nextPower["p2"] && !paused) {
             nextPower["p2"] = Time.time + cooldownTime;
             audio.clip = powerClip;
             audio.Play();
         }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene("menuScene");
+        else if (Input.GetKeyDown(KeyCode.P))
+            pauseUnpauseGame();
     }
 
     public void StartGame() {
         score.enabled = false;
-        ball.transform.position = new Vector2(0, 0);
+        ball.transform.position = new Vector2(0, -0.24f);
         p1Score = 0;
         p2Score = 0;
         nextPower["p1"] = 0;
@@ -65,7 +75,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator Countdown() {
         countdown.enabled = true;
-        audio.volume = 0.5f;
+        audio.volume = 0.3f;
         audio.clip = countdownClip;
         for (int i=3; i>0; i--) {
             countdown.text = i.ToString();
@@ -91,7 +101,7 @@ public class GameManager : MonoBehaviour {
         colorP2 = ColorUtility.ToHtmlStringRGB(p2Color);
         score.text = "<color=#" + colorP1 + ">" + p1Score + "</color> / " + "<color=#" + colorP2 + ">" + p2Score + "</color>";
 
-        ball.transform.position = new Vector2(0f, 0f);
+        ball.transform.position = new Vector2(0f, -0.24f);
         ballRB.velocity = new Vector2(0f, 0f);
         Invoke("GoBall", time);
     }
@@ -107,5 +117,14 @@ public class GameManager : MonoBehaviour {
         if (player == "p1")
             return p1Color;
         else return p2Color;
+    }
+
+    private void pauseUnpauseGame() {
+        if (!paused)
+            Time.timeScale = 0;
+        else 
+            Time.timeScale = 1;
+
+        paused = !paused;
     }
 }

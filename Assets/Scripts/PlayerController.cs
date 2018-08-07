@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour {
     private float nextPower;
 
     public Shader shader;
-    public Color shirtColor;
     private Matrix4x4 colorMatrix {
         get {
             Matrix4x4 mat = new Matrix4x4();
@@ -63,7 +62,7 @@ public class PlayerController : MonoBehaviour {
 
 
         //power speed
-        if (Input.GetKeyDown(power) && Time.time > nextPower) {
+        if (Input.GetKeyDown(power) && Time.time > nextPower && !GameManager.gm.paused) {
             nextPower = Time.time + GameManager.gm.cooldownTime;
             ParticleSystem.EmissionModule emiss = ps.emission;
             emiss.enabled = true;

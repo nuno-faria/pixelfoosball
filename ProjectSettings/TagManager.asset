@@ -7,6 +7,7 @@ TagManager:
   - p1
   - p2
   - goal
+  - ball
   layers:
   - Default
   - TransparentFX
@@ -43,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: bg
+    uniqueID: 2446286439
     locked: 0

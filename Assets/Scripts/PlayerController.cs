@@ -51,15 +51,16 @@ public class PlayerController : MonoBehaviour {
 
     public void Update() {
 
-        //movement
-        if (Input.GetKey(up))
-            playerRB.velocity = new Vector2(0, speed);
+        if (!(GameManager.gm.ai && player == "p2")) { //if ai is playing, ignore p2
+            //movement
+            if (Input.GetKey(up))
+                playerRB.velocity = new Vector2(0, speed);
 
-        else if (Input.GetKey(down))
-            playerRB.velocity = new Vector2(0, -speed);
+            else if (Input.GetKey(down))
+                playerRB.velocity = new Vector2(0, -speed);
 
-        else playerRB.velocity = new Vector2(0, 0);
-
+            else playerRB.velocity = new Vector2(0, 0);
+        }
 
         //power speed
         if (Input.GetKeyDown(power) && Time.time > nextPower && !GameManager.gm.paused) {
@@ -68,6 +69,10 @@ public class PlayerController : MonoBehaviour {
             emiss.enabled = true;
             StartCoroutine(powerSpeed());
         }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
     }
 
     private IEnumerator powerSpeed() {
@@ -82,7 +87,7 @@ public class PlayerController : MonoBehaviour {
         if (collision.name == "ball") {
             anim.SetBool("kick", true);
             Rigidbody2D ballRB = collision.GetComponent<Rigidbody2D>();
-            float x = (4 + ballRB.velocity.x / 1.6f) + (playerRB.velocity.y / 2f);
+            float x = (4 + ballRB.velocity.x / 1.5f) + (playerRB.velocity.y / 1.8f);
             float y = (ballRB.velocity.y / 1.7f) + playerRB.velocity.y;
             if (player == "p1")
                 ballRB.velocity = new Vector2(Math.Max(Math.Abs(x), 8),y);

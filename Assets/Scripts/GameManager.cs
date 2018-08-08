@@ -12,9 +12,15 @@ public class GameManager : MonoBehaviour {
     public Rigidbody2D ballRB;
     public Text score;
     public Text countdown;
+    public Text timeText;
 
     private int p1Score;
     private int p2Score;
+    private int goalLimit;
+    private int timeLimit;
+    private float beginTime;
+    private float currentTime;
+    public bool ai;
 
     public float cooldownTime;
     public Dictionary<string, float> nextPower;
@@ -36,7 +42,12 @@ public class GameManager : MonoBehaviour {
         gm = this;
         p1Color = MenuManager.mm.p1Color;
         p2Color = MenuManager.mm.p2Color;
+        goalLimit = MenuManager.mm.goalLimitValue;
+        timeLimit = MenuManager.mm.timeLimitValue;
+        ai = MenuManager.mm.ai;
+        timeText.enabled = false;
         paused = false;
+        beginTime = Mathf.Infinity;
     }
 
     void Start () {
@@ -52,7 +63,7 @@ public class GameManager : MonoBehaviour {
             audio.clip = powerClip;
             audio.Play();
         }
-        else if (Input.GetKeyDown(powerP2) && Time.time > nextPower["p2"] && !paused) {
+        else if (!ai && Input.GetKeyDown(powerP2) && Time.time > nextPower["p2"] && !paused) {
             nextPower["p2"] = Time.time + cooldownTime;
             audio.clip = powerClip;
             audio.Play();
@@ -61,6 +72,23 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene("menuScene");
         else if (Input.GetKeyDown(KeyCode.P))
             pauseUnpauseGame();
+
+        //update time
+        timeText.text = System.Math.Floor(Time.time - beginTime).ToString();
+        currentTime = (float) System.Math.Floor(Time.time - beginTime);
+
+        //ai
+        if (ai)
+            AIManager.processAI();
+
+        checkGameOver();
+    }
+
+    private void checkGameOver() {
+        //TODO add game over scene
+        if ((timeLimit != 0 && currentTime >= timeLimit) ||
+            (goalLimit != 0 && (p1Score == goalLimit || p2Score == goalLimit)))
+            SceneManager.LoadScene("menuScene");
     }
 
     public void StartGame() {
@@ -87,6 +115,8 @@ public class GameManager : MonoBehaviour {
         audio.clip = countdownFinalClip;
         audio.Play();
         audio.volume = 1f;
+        beginTime = Time.time;
+        timeText.enabled = true;
         NewRound(0, 0);
     }
 

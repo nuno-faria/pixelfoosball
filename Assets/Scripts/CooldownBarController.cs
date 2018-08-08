@@ -7,10 +7,15 @@ public class CooldownBarController : MonoBehaviour {
 
     public string player;
     private Image image;
+    private bool ai;
 
     void Start() {
         image = GetComponent<Image>();
         image.color = GameManager.gm.getColor(player);
+        ai = GameManager.gm.ai;
+        if (ai && player == "p2")
+            image.enabled = false;
+        else image.enabled = true;
     }
 
     public void Update() {

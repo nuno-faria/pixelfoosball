@@ -38,14 +38,26 @@ public class BallController : MonoBehaviour {
             main.startColor = p1;
         else if (collider.tag == "p2")
             main.startColor = p2;
-        else if (collider.tag == "goal")
+        else if (collider.tag == "goal") {
             main.startColor = defaultColor;
+        }
+        else if (collider.tag == "slowMoArea") {
+            Time.timeScale = 0.2f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
 
         if (collider.tag == "goal")
             audio.clip = goal;
         else audio.clip = hit;
 
         audio.Play();
+    }
+
+    private void OnTriggerExit2D(Collider2D collider) {
+        if (collider.tag == "slowMoArea") {
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 0.02f;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

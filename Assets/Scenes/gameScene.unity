@@ -1020,6 +1020,60 @@ Transform:
   m_PrefabParentObject: {fileID: 4019671585590240, guid: 13fc91d7923f75e4ba6c785b747b762d,
     type: 2}
   m_PrefabInternal: {fileID: 795050634}
+--- !u!1 &238880018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 238880020}
+  - component: {fileID: 238880019}
+  m_Layer: 0
+  m_Name: slowmoAreaP1
+  m_TagString: slowMoArea
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &238880019
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 238880018}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.2567842, y: -1.1427413}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4864316, y: 2.6454742}
+  m_EdgeRadius: 0
+--- !u!4 &238880020
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 238880018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.52, y: 0.82, z: 0.022700224}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &257110560 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1526135115263286, guid: 13fc91d7923f75e4ba6c785b747b762d,
@@ -1427,16 +1481,18 @@ MonoBehaviour:
   score: {fileID: 1758532469}
   countdown: {fileID: 624938923}
   timeText: {fileID: 552783401}
+  audio: {fileID: 0}
+  powerClip: {fileID: 8300000, guid: 904a91a4da2d5974bb9a707029ecabe3, type: 3}
+  countdownClip: {fileID: 8300000, guid: 2331e0ce1ce0d524b859581135f95db8, type: 3}
+  countdownFinalClip: {fileID: 8300000, guid: 520fa66b5d19ba649850f8ebde853647, type: 3}
+  p1Score: 0
+  p2Score: 0
   ai: 0
   cooldownTime: 5
   powerP1: 32
   powerP2: 303
   p1Color: {r: 0.9607844, g: 0.21960786, b: 0.21960786, a: 0}
   p2Color: {r: 0.08627451, g: 0.32156864, b: 0.87843144, a: 0}
-  audio: {fileID: 0}
-  powerClip: {fileID: 8300000, guid: 904a91a4da2d5974bb9a707029ecabe3, type: 3}
-  countdownClip: {fileID: 8300000, guid: 2331e0ce1ce0d524b859581135f95db8, type: 3}
-  countdownFinalClip: {fileID: 8300000, guid: 520fa66b5d19ba649850f8ebde853647, type: 3}
   paused: 0
 --- !u!4 &367233686
 Transform:
@@ -2599,6 +2655,60 @@ Prefab:
     - {fileID: 232730185949469682, guid: d4e1166a7c5b07d4ebd0c03af8d2983b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d4e1166a7c5b07d4ebd0c03af8d2983b, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &561970042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 561970044}
+  - component: {fileID: 561970043}
+  m_Layer: 0
+  m_Name: slowmoAreaP2
+  m_TagString: slowMoArea
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &561970043
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 561970042}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.2792294, y: -1.1526461}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.531322, y: 2.6733322}
+  m_EdgeRadius: 0
+--- !u!4 &561970044
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 561970042}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.08, y: 0.82, z: 0.022700224}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &570482350
 Prefab:
   m_ObjectHideFlags: 0
@@ -6761,8 +6871,10 @@ EdgeCollider2D:
   m_Points:
   - {x: -8.529082, y: -1.4500833}
   - {x: -8.30977, y: -1.4507354}
-  - {x: -8.303933, y: -4.786303}
-  - {x: 8.314048, y: -4.7751384}
+  - {x: -8.357487, y: -4.3444037}
+  - {x: -8.264931, y: -4.747017}
+  - {x: 8.239306, y: -4.732665}
+  - {x: 8.325507, y: -4.3944783}
   - {x: 8.301655, y: -1.4528525}
   - {x: 8.533296, y: -1.4521412}
 --- !u!68 &1350298785
@@ -6782,8 +6894,10 @@ EdgeCollider2D:
   m_Points:
   - {x: -8.527254, y: 1.5429231}
   - {x: -8.3244, y: 1.5439239}
-  - {x: -8.324769, y: 4.814537}
-  - {x: 8.332365, y: 4.8205314}
+  - {x: -8.312184, y: 4.5428157}
+  - {x: -8.234951, y: 4.8235126}
+  - {x: 8.231406, y: 4.8048654}
+  - {x: 8.297337, y: 4.5577774}
   - {x: 8.28806, y: 1.5406779}
   - {x: 8.549522, y: 1.5433276}
 --- !u!1001 &1352909729

@@ -912,7 +912,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: esc
+  m_Text: Esc
 --- !u!222 &540558056
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2875,9 +2875,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.77205884, g: 0.77205884, b: 0.77205884, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0.9044118, g: 0.9044118, b: 0.9044118, a: 1}
+    m_HighlightedColor: {r: 0.09433547, g: 0.8088235, b: 0.035683375, a: 1}
+    m_PressedColor: {r: 0.09411766, g: 0.8078432, b: 0.03529412, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3319,7 +3319,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2008967469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.32, z: 0}
+  m_LocalPosition: {x: 0, y: 3.34, z: 0}
   m_LocalScale: {x: 1.8626038, y: 1.8626038, z: 1.8626038}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3455,9 +3455,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.77205884, g: 0.77205884, b: 0.77205884, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0.9044118, g: 0.9044118, b: 0.9044118, a: 1}
+    m_HighlightedColor: {r: 0.09433547, g: 0.8088235, b: 0.035683375, a: 1}
+    m_PressedColor: {r: 0.09411766, g: 0.8078432, b: 0.03529412, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

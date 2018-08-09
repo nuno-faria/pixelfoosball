@@ -8,34 +8,35 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager gm;
 
+    [Header("Scene Atributtes")]
     public GameObject ball;
     public Rigidbody2D ballRB;
     public Text score;
     public Text countdown;
     public Text timeText;
-
-    private int p1Score;
-    private int p2Score;
-    private int goalLimit;
-    private int timeLimit;
-    private float beginTime;
-    private float currentTime;
-    public bool ai;
-
-    public float cooldownTime;
-    public Dictionary<string, float> nextPower;
-
-    public KeyCode powerP1;
-    public KeyCode powerP2;
-
-    public Color p1Color;
-    public Color p2Color;
-
     public AudioSource audio;
     public AudioClip powerClip;
     public AudioClip countdownClip;
     public AudioClip countdownFinalClip;
 
+    //theres a glitch with the particles when the ball translates
+    //this is here to disable the particles when there is a goal to stop the glitch
+    private ParticleSystem.EmissionModule ballParticleEmission;
+
+    [Header("Control Vars")]
+    public int p1Score;
+    public int p2Score;
+    private int goalLimit;
+    private int timeLimit;
+    private float beginTime;
+    private float currentTime;
+    public bool ai;
+    public float cooldownTime;
+    public Dictionary<string, float> nextPower;
+    public KeyCode powerP1;
+    public KeyCode powerP2;
+    public Color p1Color;
+    public Color p2Color;
     public bool paused;
 
     private void Awake() {
@@ -48,16 +49,15 @@ public class GameManager : MonoBehaviour {
         timeText.enabled = false;
         paused = false;
         beginTime = Mathf.Infinity;
-    }
-
-    void Start () {
+        ballParticleEmission = ball.GetComponent<ParticleSystem>().emission;
         ballRB = ball.GetComponent<Rigidbody2D>();
         nextPower = new Dictionary<string, float>();
         audio = GetComponent<AudioSource>();
         StartGame();
-	}
+    }
 
     public void Update() {
+        //inputs
         if (Input.GetKeyDown(powerP1) && Time.time > nextPower["p1"] && !paused) {
             nextPower["p1"] = Time.time + cooldownTime;
             audio.clip = powerClip;
@@ -73,22 +73,24 @@ public class GameManager : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.P))
             pauseUnpauseGame();
 
+
         //update time
         timeText.text = System.Math.Floor(Time.time - beginTime).ToString();
         currentTime = (float) System.Math.Floor(Time.time - beginTime);
+
 
         //ai
         if (ai)
             AIManager.processAI();
 
+
+        //check if game is over
         checkGameOver();
     }
 
     private void checkGameOver() {
-        //TODO add game over scene
-        if ((timeLimit != 0 && currentTime >= timeLimit) ||
-            (goalLimit != 0 && (p1Score == goalLimit || p2Score == goalLimit)))
-            SceneManager.LoadScene("menuScene");
+        if ((timeLimit != 0 && currentTime >= timeLimit) || (goalLimit != 0 && (p1Score == goalLimit || p2Score == goalLimit)))
+            SceneManager.LoadScene("gameOverScene");
     }
 
     public void StartGame() {
@@ -105,11 +107,13 @@ public class GameManager : MonoBehaviour {
         countdown.enabled = true;
         audio.volume = 0.3f;
         audio.clip = countdownClip;
+
         for (int i=3; i>0; i--) {
             countdown.text = i.ToString();
             audio.Play();
             yield return new WaitForSeconds(1f);
         }
+
         countdown.enabled = false;
         score.enabled = true;
         audio.clip = countdownFinalClip;
@@ -121,6 +125,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void NewRound(int player, float time) {
+        ballParticleEmission.enabled = false;
+
         if (player == 1)
             p1Score++;
         else if (player == 2)
@@ -141,6 +147,8 @@ public class GameManager : MonoBehaviour {
         if (x <= 0.5f)
             ballRB.AddForce(new Vector2(13f, 6f));
         else ballRB.AddForce(new Vector2(-13f, -6f));
+
+        ballParticleEmission.enabled = true;
     }
 
     public Color getColor(string player) {

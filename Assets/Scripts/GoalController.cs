@@ -22,7 +22,7 @@ public class GoalController : MonoBehaviour {
         if (collider.name == "ball") {
             audio.Play();
             spectatorsControllers.ForEach(x => x.celebrate());
-            GameManager.gm.NewRound(player, 0.6f);
+            GameManager.gm.NewRound(player, 0.65f);
         }
     }
 }

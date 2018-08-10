@@ -21,6 +21,23 @@ public class AIManager : MonoBehaviour {
         currentNProcesses = 0;
     }
 
+    void Start() {
+        switch (GameManager.gm.difficulty) {
+            case 0:
+                thinkTime = 0.125f;
+                speed = 4.5f;
+                break;
+            case 1:
+                thinkTime = 0.08f;
+                speed = 5f;
+                break;
+            case 2:
+                thinkTime = 0.02f;
+                speed = 5f;
+                break;
+        }
+    }
+
     public static void processAI() {
         if (nextProcessTime <= 0 && !(ball.velocity == new Vector2(0, 0))) {
             Rigidbody2D player = getClosest();

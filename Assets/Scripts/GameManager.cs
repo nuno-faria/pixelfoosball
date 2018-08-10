@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour {
     public Color p1Color;
     public Color p2Color;
     public bool paused;
+    public int difficulty;
 
     private void Awake() {
         gm = this;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour {
         goalLimit = MenuManager.mm.goalLimitValue;
         timeLimit = MenuManager.mm.timeLimitValue;
         ai = MenuManager.mm.ai;
+        difficulty = MenuManager.mm.difficulty;
         timeText.enabled = false;
         paused = false;
         beginTime = Mathf.Infinity;
@@ -53,36 +55,35 @@ public class GameManager : MonoBehaviour {
         ballRB = ball.GetComponent<Rigidbody2D>();
         nextPower = new Dictionary<string, float>();
         audio = GetComponent<AudioSource>();
+        Time.timeScale = 1.0f;
+        Time.fixedDeltaTime = 0.02f;
         StartGame();
     }
 
     public void Update() {
         //inputs
-        if (Input.GetKeyDown(powerP1) && Time.time > nextPower["p1"] && !paused) {
+        if ((Input.GetKeyDown(powerP1) || Input.GetAxis("Dashp1") == 1) && Time.time > nextPower["p1"] && !paused) {
             nextPower["p1"] = Time.time + cooldownTime;
             audio.clip = powerClip;
             audio.Play();
         }
-        else if (!ai && Input.GetKeyDown(powerP2) && Time.time > nextPower["p2"] && !paused) {
+        else if (!ai && (Input.GetKeyDown(powerP2) || Input.GetAxis("Dashp2") == 1) && Time.time > nextPower["p2"] && !paused) {
             nextPower["p2"] = Time.time + cooldownTime;
             audio.clip = powerClip;
             audio.Play();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetAxis("Quitp1") == 1)
             SceneManager.LoadScene("menuScene");
-        else if (Input.GetKeyDown(KeyCode.P))
+        else if (Input.GetKeyDown(KeyCode.P) || Input.GetButtonDown("Pausep1"))
             pauseUnpauseGame();
-
 
         //update time
         timeText.text = System.Math.Floor(Time.time - beginTime).ToString();
         currentTime = (float) System.Math.Floor(Time.time - beginTime);
 
-
         //ai
         if (ai)
             AIManager.processAI();
-
 
         //check if game is over
         checkGameOver();

@@ -20,6 +20,8 @@ public class GoalController : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D collider) {
         if (collider.name == "ball") {
+            Time.timeScale = 1.0f;
+            Time.fixedDeltaTime = 0.02f;
             audio.Play();
             spectatorsControllers.ForEach(x => x.celebrate());
             GameManager.gm.NewRound(player, 0.65f);

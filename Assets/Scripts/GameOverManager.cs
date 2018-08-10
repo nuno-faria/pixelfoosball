@@ -15,7 +15,7 @@ public class GameOverManager : MonoBehaviour {
 	}
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetAxis("Quitp1") == 1)
             SceneManager.LoadScene("MenuScene");
     }
 

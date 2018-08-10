@@ -55,17 +55,17 @@ public class PlayerController : MonoBehaviour {
 
         if (!(GameManager.gm.ai && player == "p2")) { //if ai is playing, ignore p2
             //movement
-            if (Input.GetKey(up))
+            if (Input.GetKey(up) || Input.GetAxis("Vertical" + player) == -1)
                 playerRB.velocity = new Vector2(0, speed);
 
-            else if (Input.GetKey(down))
+            else if (Input.GetKey(down) || Input.GetAxis("Vertical" + player) == 1)
                 playerRB.velocity = new Vector2(0, -speed);
 
             else playerRB.velocity = new Vector2(0, 0);
         }
 
         //power speed
-        if (Input.GetKeyDown(power) && Time.time > nextPower && !GameManager.gm.paused) {
+        if ((Input.GetKeyDown(power) || Input.GetAxis("Dash" + player) == 1) && Time.time > nextPower && !GameManager.gm.paused) {
             nextPower = Time.time + GameManager.gm.cooldownTime;
             ParticleSystem.EmissionModule emiss = ps.emission;
             emiss.enabled = true;

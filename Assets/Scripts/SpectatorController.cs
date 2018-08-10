@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpectatorController : MonoBehaviour {
 
-
     public string player;
     private Rigidbody2D rb;
 
@@ -36,6 +35,9 @@ public class SpectatorController : MonoBehaviour {
     }
 
     public void celebrate() {
-        rb.AddForce(new Vector2(Random.Range(-10f, 10f), 0));
+        float force = Random.Range(-12f, 12f);
+        if (System.Math.Abs(force) < 3f)
+            force = 3 * System.Math.Sign(force);
+        rb.AddForce(new Vector2(force, 0));
     }
 }

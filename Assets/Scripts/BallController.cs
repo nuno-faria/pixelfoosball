@@ -10,12 +10,13 @@ public class BallController : MonoBehaviour {
     public Color p2;
 
     public AudioSource audio;
-    public AudioClip goal;
+    //public AudioClip goal;
     public AudioClip hit;
 
     void Start () {
         ps = GetComponent<ParticleSystem>();
         audio = GetComponent<AudioSource>();
+        audio.clip = hit;
         p1 = GameManager.gm.p1Color;
         p2 = GameManager.gm.p2Color;
         setColor();
@@ -34,23 +35,24 @@ public class BallController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collider) {
         ParticleSystem.MainModule main =  ps.main;
-        if (collider.tag == "p1")
+        if (collider.tag == "p1") {
             main.startColor = p1;
-        else if (collider.tag == "p2")
-            main.startColor = p2;
-        else if (collider.tag == "goal") {
-            main.startColor = defaultColor;
+            audio.Play();
         }
+        else if (collider.tag == "p2") {
+            main.startColor = p2;
+            audio.Play();
+        }
+        else if (collider.tag == "goal")
+            main.startColor = defaultColor;
         else if (collider.tag == "slowMoArea") {
             Time.timeScale = 0.2f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
         }
 
-        if (collider.tag == "goal")
-            audio.clip = goal;
-        else audio.clip = hit;
-
-        audio.Play();
+        //if (collider.tag == "goal")
+            //audio.clip = goal;
+        //else audio.clip = hit;
     }
 
     private void OnTriggerExit2D(Collider2D collider) {

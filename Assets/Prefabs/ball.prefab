@@ -98,8 +98,8 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
+  Priority: 50
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -148,7 +148,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -177,8 +177,7 @@ MonoBehaviour:
   p1: {r: 1, g: 0.33823532, b: 0.34127095, a: 1}
   p2: {r: 0.20588237, g: 0.44567487, b: 1, a: 1}
   audio: {fileID: 0}
-  goal: {fileID: 8300000, guid: caa64abd3b4aae24bb33bc7d7dad2e63, type: 3}
-  hit: {fileID: 8300000, guid: c0cae04c303d354409f1674ef3cf5911, type: 3}
+  hit: {fileID: 8300000, guid: f32cbe6e3b03fac4491493651fed2a1c, type: 3}
 --- !u!198 &198566813001067896
 ParticleSystem:
   m_ObjectHideFlags: 1

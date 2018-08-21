@@ -1,4 +1,4 @@
-![](readmeResources/logo.png)
+![](ReadmeResources/logo.png)
 
 An arcarde foosball (table football) game made with Unity. Play online [here](https://nuno-faria.itch.io/pixelfoosball).
 
@@ -6,7 +6,7 @@ An arcarde foosball (table football) game made with Unity. Play online [here](ht
 
 Play with your friends or the CPU (comes with different difficulty levels). Customize your players and choose a time and/or goal limit. Provides controller support.
 
-<img src="readmeResources/demo.gif"/>
+<img src="ReadmeResources/demo.gif"/>
 
 ## Controls
 

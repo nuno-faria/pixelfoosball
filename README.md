@@ -11,15 +11,19 @@ Play with your friends or the CPU (comes with different difficulty levels). Cust
 ## Controls
 
 Pause - P (Y in controller)
+
 Quit - Esc (Start in controller)
 
-#####Player 1
+
+### Player 1
 
 Move - W/S (up/down in controller)
+
 Dash - Space (A in controller)
 
 
-#####Player 2
+### Player 2
 
 Move - Up/Down Arrows (up/down in controller)
+
 Dash - Left Shift (A in controller)
